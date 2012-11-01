@@ -6,7 +6,7 @@ package hummingmatrix.v2;
 
 /**
  *
- * @author Aneta
+ * @author Darko
  */
 public class HummingMatrixV2 {
 
