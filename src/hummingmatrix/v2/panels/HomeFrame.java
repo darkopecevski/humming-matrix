@@ -4,6 +4,11 @@
  */
 package hummingmatrix.v2.panels;
 
+import hummingmatrix.v2.dialogs.CreateMatrixDialog;
+import hummingmatrix.v2.dialogs.NoMatrixEnteredAlertDialog;
+import hummingmatrix.v2.dialogs.OpenMatrixDialog;
+import hummingmatrix.v2.models.MatrixComboBoxModel;
+
 /**
  *
  * @author Aneta
@@ -45,11 +50,21 @@ public class HomeFrame extends javax.swing.JFrame {
         miCreateNewMatrix.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         miCreateNewMatrix.setMnemonic('c');
         miCreateNewMatrix.setText(bundle.getString("menu.item.create_new_matrix")); // NOI18N
+        miCreateNewMatrix.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miCreateNewMatrixActionPerformed(evt);
+            }
+        });
         fileMenu.add(miCreateNewMatrix);
 
         miOpenMatrix.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         miOpenMatrix.setMnemonic('o');
         miOpenMatrix.setText(bundle.getString("menu.item.open_matrix")); // NOI18N
+        miOpenMatrix.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miOpenMatrixActionPerformed(evt);
+            }
+        });
         fileMenu.add(miOpenMatrix);
         fileMenu.add(jSeparator1);
 
@@ -93,6 +108,26 @@ public class HomeFrame extends javax.swing.JFrame {
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
+
+    private void miCreateNewMatrixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCreateNewMatrixActionPerformed
+        CreateMatrixDialog cmd = new CreateMatrixDialog(this, true);
+        cmd.setLocationRelativeTo(this);
+        cmd.setVisible(true);
+    }//GEN-LAST:event_miCreateNewMatrixActionPerformed
+
+    private void miOpenMatrixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miOpenMatrixActionPerformed
+        //Check if matrices exiist. If not show alert box.
+        MatrixComboBoxModel mcbm = new MatrixComboBoxModel();
+        if (mcbm.getSize() > 110) {
+            OpenMatrixDialog omd = new OpenMatrixDialog(this, true);
+            omd.setLocationRelativeTo(this);
+            omd.setVisible(true);
+        } else {
+            NoMatrixEnteredAlertDialog nmed = new NoMatrixEnteredAlertDialog(this, true);
+            nmed.setLocationRelativeTo(this);
+            nmed.setVisible(true);
+        }
+    }//GEN-LAST:event_miOpenMatrixActionPerformed
 
     /**
      * @param args the command line arguments
