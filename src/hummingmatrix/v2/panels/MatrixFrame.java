@@ -10,6 +10,9 @@
  */
 package hummingmatrix.v2.panels;
 
+import java.awt.BorderLayout;
+import java.awt.Container;
+
 /**
  *
  * @author Ane
@@ -19,6 +22,10 @@ public class MatrixFrame extends javax.swing.JFrame {
     /** Creates new form MatrixFrame */
     public MatrixFrame() {
         initComponents();
+        WestPanelHolder wph = new WestPanelHolder();
+        Container pane = this.getContentPane();
+        pane.add(wph, BorderLayout.WEST);
+        pack();
     }
 
     /** This method is called from within the constructor to
@@ -132,17 +139,6 @@ public class MatrixFrame extends javax.swing.JFrame {
         jMenuBar1.add(jmEdit);
 
         setJMenuBar(jMenuBar1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
