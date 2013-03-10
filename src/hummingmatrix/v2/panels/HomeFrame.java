@@ -47,8 +47,9 @@ public class HomeFrame extends javax.swing.JFrame {
         fileMenu.setMnemonic('m');
         fileMenu.setText(bundle.getString("menu.item.Matrix")); // NOI18N
 
-        miCreateNewMatrix.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
-        miCreateNewMatrix.setMnemonic('c');
+        miCreateNewMatrix.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        miCreateNewMatrix.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hummingmatrix/v2/resources/new.png"))); // NOI18N
+        miCreateNewMatrix.setMnemonic('n');
         miCreateNewMatrix.setText(bundle.getString("menu.item.create_new_matrix")); // NOI18N
         miCreateNewMatrix.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,6 +59,7 @@ public class HomeFrame extends javax.swing.JFrame {
         fileMenu.add(miCreateNewMatrix);
 
         miOpenMatrix.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        miOpenMatrix.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hummingmatrix/v2/resources/open.png"))); // NOI18N
         miOpenMatrix.setMnemonic('o');
         miOpenMatrix.setText(bundle.getString("menu.item.open_matrix")); // NOI18N
         miOpenMatrix.addActionListener(new java.awt.event.ActionListener() {
@@ -118,7 +120,7 @@ public class HomeFrame extends javax.swing.JFrame {
     private void miOpenMatrixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miOpenMatrixActionPerformed
         //Check if matrices exiist. If not show alert box.
         MatrixComboBoxModel mcbm = new MatrixComboBoxModel();
-        if (mcbm.getSize() > 110) {
+        if (mcbm.getSize() > 0) {
             OpenMatrixDialog omd = new OpenMatrixDialog(this, true);
             omd.setLocationRelativeTo(this);
             omd.setVisible(true);

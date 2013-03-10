@@ -4,6 +4,7 @@
  */
 package hummingmatrix.v2.models;
 
+import hummingmatrix.v2.classes.ReadWriteText;
 import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
 
@@ -13,10 +14,15 @@ import javax.swing.ComboBoxModel;
  */
 public class MatrixComboBoxModel extends AbstractListModel implements ComboBoxModel {
 
-    String[] matrixNames = {"Monitor", "Key Board", "Mouse", "Joy Stick", "Modem", "CD ROM",
-        "RAM Chip", "Diskette"};
+    String[] matrixNames;
+    public MatrixComboBoxModel() {
+        ReadWriteText rwt = new ReadWriteText();
+        this.matrixNames = rwt.listMatrices();
+    }
+    
+    
     String selection = null;
-
+  
     @Override
     public Object getElementAt(int index) {
         return matrixNames[index];

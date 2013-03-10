@@ -5,6 +5,7 @@
 package hummingmatrix.v2.dialogs;
 
 import hummingmatrix.v2.models.MatrixComboBoxModel;
+import hummingmatrix.v2.panels.MatrixFrame;
 import javax.swing.ComboBoxModel;
 
 /**
@@ -13,8 +14,8 @@ import javax.swing.ComboBoxModel;
  */
 public class OpenMatrixDialog extends javax.swing.JDialog {
 
-    
     private MatrixComboBoxModel matrixModel = new MatrixComboBoxModel();
+
     /**
      * Creates new form OpenMatrixDialog
      */
@@ -45,10 +46,10 @@ public class OpenMatrixDialog extends javax.swing.JDialog {
         setTitle(bundle.getString("OpenMatrixDialog.title")); // NOI18N
         setResizable(false);
 
-        jlblOpenMatrixTitle.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jlblOpenMatrixTitle.setFont(new java.awt.Font("Tahoma", 0, 18));
         jlblOpenMatrixTitle.setText(bundle.getString("OpenMatrixDialog.jlblOpenMatrixTitle.text")); // NOI18N
 
-        jlblSelectMatrix.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlblSelectMatrix.setFont(new java.awt.Font("Tahoma", 0, 14));
         jlblSelectMatrix.setText(bundle.getString("OpenMatrixDialog.jlblSelectMatrix.text")); // NOI18N
 
         jcbSelectMatrix.setModel(matrixModel);
@@ -61,6 +62,11 @@ public class OpenMatrixDialog extends javax.swing.JDialog {
         });
 
         jbtnOpenMatrix.setText(bundle.getString("OpenMatrixDialog.jbtnOpenMatrix.text")); // NOI18N
+        jbtnOpenMatrix.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnOpenMatrixActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,17 +75,17 @@ public class OpenMatrixDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlblSelectMatrix)
                         .addGap(18, 18, 18)
                         .addComponent(jcbSelectMatrix, 0, 226, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlblOpenMatrixTitle)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jSeparator2)
+                        .addGap(0, 284, Short.MAX_VALUE))
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 214, Short.MAX_VALUE)
                         .addComponent(jbtnOpenMatrix)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbtnCancel)))
@@ -112,7 +118,13 @@ public class OpenMatrixDialog extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_jbtnCancelActionPerformed
 
- 
+private void jbtnOpenMatrixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOpenMatrixActionPerformed
+    // TODO add your handling code here
+    this.dispose();
+    MatrixFrame mf = new MatrixFrame();
+    mf.setLocationRelativeTo(this);
+    mf.setVisible(true);
+}//GEN-LAST:event_jbtnOpenMatrixActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
