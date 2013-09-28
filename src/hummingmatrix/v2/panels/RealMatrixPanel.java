@@ -20,17 +20,14 @@ import javax.swing.JTable;
  */
 public class RealMatrixPanel extends javax.swing.JPanel {
 
-    private String matrixName;
     private ReadWriteText matrixObj;
 
     /**
      * Creates new form RealMatrixPanel
      */
-    public RealMatrixPanel(String matrixName) {
+    public RealMatrixPanel(ReadWriteText matrix) {
         initComponents();
-        this.matrixName = matrixName;
-
-        this.matrixObj = new ReadWriteText(this.matrixName);
+        this.matrixObj = matrix;
         initRealMatrix();
     }
 

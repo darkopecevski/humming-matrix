@@ -10,33 +10,26 @@ import hummingmatrix.v2.classes.ReadWriteText;
  *
  * @author Ane
  */
-public class WestPanelHolder extends javax.swing.JPanel {
+public class EastPanelHolder extends javax.swing.JPanel {
     
     private ReadWriteText matrixObj;
 
     /**
      * Creates new form WestPanelHolder
      */
-    public WestPanelHolder(ReadWriteText matrix) {
+    public EastPanelHolder(ReadWriteText matrix) {
         initComponents();
         this.matrixObj = matrix;
         
     }
     
-    public void addRealMatrixPanel() {
-        RealMatrixPanel rmp = new RealMatrixPanel(this.matrixObj);
-        this.add(rmp);
+    public void addResultsPanel() {
+        ResultsPanel rp = new ResultsPanel(this.matrixObj);
+        this.add(rp);
         repaint();
         revalidate();
     }
     
-    public void addQMatrixPanel() {
-        QMatrixPanel qmp = new QMatrixPanel(this.matrixObj);
-        this.add(qmp);
-        repaint();
-        revalidate();
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

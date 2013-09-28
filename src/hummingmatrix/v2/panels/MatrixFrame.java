@@ -10,6 +10,7 @@
  */
 package hummingmatrix.v2.panels;
 
+import hummingmatrix.v2.classes.ReadWriteText;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -21,42 +22,51 @@ import java.awt.Toolkit;
  */
 public class MatrixFrame extends javax.swing.JFrame {
 
-    private String matrixName;
     private Toolkit tk;
     int xSize;
     int ySize;
-
-    public String getMatrixName() {
-        return matrixName;
-    }
-
-    public void setMatrixName(String matrixName) {
-        this.matrixName = matrixName;
-        
-    }
+    private ReadWriteText matrixObj;
 
     /**
      * Creates new form MatrixFrame
      */
-    public MatrixFrame() {
+    public MatrixFrame(String matrixName) {
         initComponents();
         this.tk = Toolkit.getDefaultToolkit();
         this.xSize = ((int) this.tk.getScreenSize().getWidth());
         this.ySize = ((int) this.tk.getScreenSize().getHeight());
         this.setPreferredSize(new Dimension(xSize, ySize));
+        this.matrixObj = new ReadWriteText(matrixName);
     }
 
     public void setWestPanelHolder() {
-        WestPanelHolder wph = new WestPanelHolder(this.matrixName);
+        WestPanelHolder wph = new WestPanelHolder(this.matrixObj);
         
         int panelWidth = (int) (Math.round(this.xSize * 0.50));
         int panelHeight = (int) (Math.round(this.ySize * 1));
         wph.setPreferredSize(new Dimension(panelWidth,panelHeight));
         //adding the RealMatrix panel
         wph.addRealMatrixPanel();
+        //adding QMatrix panel
+        wph.addQMatrixPanel();
 
         Container pane = this.getContentPane();
         pane.add(wph, BorderLayout.WEST);
+        pack();
+    }
+    
+    public void setEastPanelHolder() {
+        EastPanelHolder eph = new EastPanelHolder(this.matrixObj);
+        
+        int panelWidth = (int) (Math.round(this.xSize * 0.50));
+        int panelHeight = (int) (Math.round(this.ySize * 1));
+        eph.setPreferredSize(new Dimension(panelWidth,panelHeight));
+        //adding the Result panel
+        eph.addResultsPanel();
+        
+
+        Container pane = this.getContentPane();
+        pane.add(eph, BorderLayout.EAST);
         pack();
     }
 
@@ -88,7 +98,7 @@ public class MatrixFrame extends javax.swing.JFrame {
         jmiTransposeMatrix = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
+        setResizable(false);
 
         jmMatrix.setMnemonic('m');
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("hummingmatrix/v2/translation/Bundle"); // NOI18N

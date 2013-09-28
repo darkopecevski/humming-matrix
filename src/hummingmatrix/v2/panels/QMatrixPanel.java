@@ -20,17 +20,14 @@ import javax.swing.JTable;
  */
 public class QMatrixPanel extends javax.swing.JPanel {
 
-    private String matrixName;
     private ReadWriteText matrixObj;
 
     /**
      * Creates new form RealMatrixPanel
      */
-    public QMatrixPanel(String matrixName) {
+    public QMatrixPanel(ReadWriteText matrix) {
         initComponents();
-        this.matrixName = matrixName;
-
-        this.matrixObj = new ReadWriteText(this.matrixName);
+        this.matrixObj = matrix;
         initRealMatrix();
     }
 
@@ -54,11 +51,11 @@ public class QMatrixPanel extends javax.swing.JPanel {
             this.matrixObj.presmetajPremini(matrix);
             this.matrixObj.verojatnostNaSosednaDistanca();
 
-            jtblRealMatrixTable.setModel(new javax.swing.table.DefaultTableModel(matrix, columnTitles));
+            jtblRealMatrixTable.setModel(new javax.swing.table.DefaultTableModel(qMatrix, columnTitles));
             jtblRealMatrixTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
             jspRealMatrixScrollPane.setViewportView(jtblRealMatrixTable);
-            JTable rowTable = new RowNumberTable(jtblRealMatrixTable, 30);
+            JTable rowTable = new RowNumberTable(jtblRealMatrixTable, 40);
             jspRealMatrixScrollPane.setRowHeaderView(rowTable);
             jspRealMatrixScrollPane.setCorner(JScrollPane.UPPER_LEFT_CORNER, rowTable.getTableHeader());
 

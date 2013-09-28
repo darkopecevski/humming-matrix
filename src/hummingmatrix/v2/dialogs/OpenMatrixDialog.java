@@ -128,9 +128,9 @@ private void jbtnOpenMatrixActionPerformed(java.awt.event.ActionEvent evt) {//GE
         return;
     }
     //Adding MatrixFrame
-    MatrixFrame mf = new MatrixFrame();
-    mf.setMatrixName(jcbSelectMatrix.getSelectedItem().toString());
+    MatrixFrame mf = new MatrixFrame(jcbSelectMatrix.getSelectedItem().toString());
     mf.setWestPanelHolder();
+    mf.setEastPanelHolder();
     mf.setLocationRelativeTo(this);
     mf.setVisible(true);
     this.dispose();
