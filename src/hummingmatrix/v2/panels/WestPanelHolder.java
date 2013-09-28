@@ -9,16 +9,22 @@ package hummingmatrix.v2.panels;
  * @author Ane
  */
 public class WestPanelHolder extends javax.swing.JPanel {
+    
+    private String matrixName;
 
     /**
      * Creates new form WestPanelHolder
      */
-    public WestPanelHolder() {
+    public WestPanelHolder(String matrixName) {
         initComponents();
-        RealMatrixPanel rmp = new RealMatrixPanel();
-        RealMatrixPanel rmp1 = new RealMatrixPanel();
+        this.matrixName = matrixName;
+        
+    }
+    
+    public void addRealMatrixPanel() {
+        RealMatrixPanel rmp = new RealMatrixPanel(this.matrixName);
+        System.out.println(this.matrixName);
         this.add(rmp);
-        this.add(rmp1);
         repaint();
         revalidate();
     }

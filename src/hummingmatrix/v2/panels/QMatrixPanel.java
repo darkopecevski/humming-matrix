@@ -18,7 +18,7 @@ import javax.swing.JTable;
  *
  * @author Ane
  */
-public class RealMatrixPanel extends javax.swing.JPanel {
+public class QMatrixPanel extends javax.swing.JPanel {
 
     private String matrixName;
     private ReadWriteText matrixObj;
@@ -26,7 +26,7 @@ public class RealMatrixPanel extends javax.swing.JPanel {
     /**
      * Creates new form RealMatrixPanel
      */
-    public RealMatrixPanel(String matrixName) {
+    public QMatrixPanel(String matrixName) {
         initComponents();
         this.matrixName = matrixName;
 
@@ -64,7 +64,7 @@ public class RealMatrixPanel extends javax.swing.JPanel {
 
 
         } catch (IOException ex) {
-            Logger.getLogger(RealMatrixPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QMatrixPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -84,7 +84,7 @@ public class RealMatrixPanel extends javax.swing.JPanel {
 
         jlblRealMatrixTitle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("hummingmatrix/v2/translation/Bundle"); // NOI18N
-        jlblRealMatrixTitle.setText(bundle.getString("RealMatrixPanel.jlblRealMatrixTitle.text")); // NOI18N
+        jlblRealMatrixTitle.setText(bundle.getString("QMatrixPanel.jlblRealMatrixTitle.text")); // NOI18N
 
         jtblRealMatrixTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

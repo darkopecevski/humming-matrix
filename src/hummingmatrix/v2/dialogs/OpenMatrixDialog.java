@@ -6,6 +6,7 @@ package hummingmatrix.v2.dialogs;
 
 import hummingmatrix.v2.models.MatrixComboBoxModel;
 import hummingmatrix.v2.panels.MatrixFrame;
+import java.util.ResourceBundle;
 import javax.swing.ComboBoxModel;
 
 /**
@@ -15,6 +16,7 @@ import javax.swing.ComboBoxModel;
 public class OpenMatrixDialog extends javax.swing.JDialog {
 
     private MatrixComboBoxModel matrixModel = new MatrixComboBoxModel();
+    private ResourceBundle bundle = ResourceBundle.getBundle("hummingmatrix/v2/translation/Bundle");
 
     /**
      * Creates new form OpenMatrixDialog
@@ -120,10 +122,18 @@ public class OpenMatrixDialog extends javax.swing.JDialog {
 
 private void jbtnOpenMatrixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOpenMatrixActionPerformed
     // TODO add your handling code here
-    this.dispose();
+    if (jcbSelectMatrix.getSelectedItem() == null) {
+        WarningDialog wd = new WarningDialog(null, true, bundle.getString("WarningMsg.pleaseSelectMatrix.text"));
+        jcbSelectMatrix.requestFocus();
+        return;
+    }
+    //Adding MatrixFrame
     MatrixFrame mf = new MatrixFrame();
+    mf.setMatrixName(jcbSelectMatrix.getSelectedItem().toString());
+    mf.setWestPanelHolder();
     mf.setLocationRelativeTo(this);
     mf.setVisible(true);
+    this.dispose();
 }//GEN-LAST:event_jbtnOpenMatrixActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSeparator jSeparator1;

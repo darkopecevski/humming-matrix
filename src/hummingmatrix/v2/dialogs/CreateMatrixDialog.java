@@ -4,17 +4,25 @@
  */
 package hummingmatrix.v2.dialogs;
 
+import hummingmatrix.v2.classes.ReadWriteText;
+import java.awt.Color;
+import java.util.ResourceBundle;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Darko
  */
 public class CreateMatrixDialog extends javax.swing.JDialog {
 
+    private ResourceBundle bundle = ResourceBundle.getBundle("hummingmatrix/v2/translation/Bundle");
+
     /**
      * Creates new form EnterMatrixDialog
      */
     public CreateMatrixDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+
         initComponents();
     }
 
@@ -71,6 +79,11 @@ public class CreateMatrixDialog extends javax.swing.JDialog {
         });
 
         jbtnCreate.setText(bundle.getString("CreateMatrixDialog.jbtnCreate.text")); // NOI18N
+        jbtnCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnCreateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,7 +154,48 @@ public class CreateMatrixDialog extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_jbtnCancelActionPerformed
 
-   
+    private void jbtnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCreateActionPerformed
+        String matrixName = jtfEnterMatrixName.getText().trim();
+
+        int nbrColumns, nbrRows;
+
+        if ("".equals(matrixName) || matrixName == null) {
+            WarningDialog wd = new WarningDialog(null, true, bundle.getString("ErrorMsg.enterMatrixName.text"));
+            jtfEnterMatrixName.requestFocus();
+            return;
+        }
+
+        try {
+            nbrRows = Integer.parseInt(jtfEnterNbrRows.getText());
+        } catch (NumberFormatException e) {
+            WarningDialog wd = new WarningDialog(null, true, bundle.getString("ErrorMsg.onlyNumbers.text"));
+            jtfEnterNbrRows.requestFocus();
+            return;
+        }
+
+        try {
+            nbrColumns = Integer.parseInt(jtfEnterNbrColumns.getText());
+        } catch (NumberFormatException e) {
+            WarningDialog wd = new WarningDialog(null, true, bundle.getString("ErrorMsg.onlyNumbers.text"));
+            jtfEnterNbrColumns.requestFocus();
+            return;
+        }
+
+
+        ReadWriteText file = new ReadWriteText(matrixName + ".txt");
+        if (!file.fileExists()) {
+            if (file.createFile()) {
+                file.insertEmptyMatrix(nbrRows, nbrColumns);
+                InformationDialog id = new InformationDialog(null, true, bundle.getString("InfoMsg.matrixEntered.text"));
+                this.dispose();
+            } else {
+                ErrorDialog ed = new ErrorDialog(null, true, bundle.getString("ErrorMsg.enteringFailed.text"));
+            }
+        } else {
+            ErrorDialog ed = new ErrorDialog(null, true, bundle.getString("ErrorMsg.matrixExist.text"));
+            jtfEnterMatrixName.requestFocus();
+        }
+    }//GEN-LAST:event_jbtnCreateActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

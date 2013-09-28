@@ -29,6 +29,7 @@ public class NoMatrixEnteredAlertDialog extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jlblAlertMessage = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jbtnCancel = new javax.swing.JButton();
         jbtnCreateMatrix = new javax.swing.JButton();
 
@@ -37,10 +38,12 @@ public class NoMatrixEnteredAlertDialog extends javax.swing.JDialog {
         setTitle(bundle.getString("NoMatrixEnteredAlertDialog.title")); // NOI18N
         setResizable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 0)));
 
         jlblAlertMessage.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlblAlertMessage.setText(bundle.getString("NoMatrixEnteredAlertDialog.jlblAlertMessage.text")); // NOI18N
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hummingmatrix/v2/resources/alert.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -48,14 +51,18 @@ public class NoMatrixEnteredAlertDialog extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addComponent(jlblAlertMessage)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(237, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jlblAlertMessage)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlblAlertMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -77,11 +84,11 @@ public class NoMatrixEnteredAlertDialog extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jbtnCreateMatrix)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -93,11 +100,11 @@ public class NoMatrixEnteredAlertDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnCancel)
                     .addComponent(jbtnCreateMatrix))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -110,6 +117,11 @@ public class NoMatrixEnteredAlertDialog extends javax.swing.JDialog {
 
     private void jbtnCreateMatrixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCreateMatrixActionPerformed
         this.dispose();
+        WarningDialog wd = new WarningDialog(null, true, "This is just a test message long message to check if it will expand properly");
+        wd.revalidate();
+        wd.repaint();
+        wd.setLocationRelativeTo(this);
+        wd.setVisible(true);
         CreateMatrixDialog cmd = new CreateMatrixDialog(null, true);
         cmd.setLocationRelativeTo(this);
         cmd.setVisible(true);
@@ -165,6 +177,7 @@ public class NoMatrixEnteredAlertDialog extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbtnCancel;
     private javax.swing.JButton jbtnCreateMatrix;

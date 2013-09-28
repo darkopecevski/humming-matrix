@@ -68,16 +68,14 @@ public class ReadWriteText {
 
     }
 
-    public boolean insertEmptyMatrix(String rowNum, String columnNum) {
+    public boolean insertEmptyMatrix(int rowNum, int columnNum) {
         try {
             FileWriter writeToFile = new FileWriter(file);
-            int rowN = Integer.parseInt(rowNum);
-            int colN = Integer.parseInt(columnNum);
-            int mXn = rowN * colN;
-            writeToFile.write(rowN + "\r\n");
-            writeToFile.write(colN + "\r\n");
-            for (int i = 0; i < rowN; i++) {
-                for (int j = 0; j < colN; j++) {
+            int mXn = rowNum * columnNum;
+            writeToFile.write(rowNum + "\r\n");
+            writeToFile.write(columnNum + "\r\n");
+            for (int i = 0; i < rowNum; i++) {
+                for (int j = 0; j < columnNum; j++) {
                     writeToFile.write("0", 0, 1);
                 }
                 writeToFile.write("\r\n");
