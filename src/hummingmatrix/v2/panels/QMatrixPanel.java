@@ -6,6 +6,7 @@ package hummingmatrix.v2.panels;
 
 import hummingmatrix.v2.classes.ReadWriteText;
 import hummingmatrix.v2.classes.RowNumberTable;
+import hummingmatrix.v2.interfaces.MatrixChangeObserver;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Set;
@@ -18,7 +19,7 @@ import javax.swing.JTable;
  *
  * @author Ane
  */
-public class QMatrixPanel extends javax.swing.JPanel {
+public class QMatrixPanel extends javax.swing.JPanel implements MatrixChangeObserver{
 
     private ReadWriteText matrixObj;
 
@@ -28,10 +29,11 @@ public class QMatrixPanel extends javax.swing.JPanel {
     public QMatrixPanel(ReadWriteText matrix) {
         initComponents();
         this.matrixObj = matrix;
-        initRealMatrix();
+        initQMatrix();
+        this.matrixObj.register(this);
     }
 
-    private void initRealMatrix() {
+    private void initQMatrix() {
         try {
             int rowNum = this.matrixObj.getNumberOfRows();
             int colNum = this.matrixObj.getNumberOfColumns();
@@ -131,4 +133,10 @@ public class QMatrixPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jspRealMatrixScrollPane;
     private javax.swing.JTable jtblRealMatrixTable;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onMatrixChange(ReadWriteText matrix) {
+        this.matrixObj = matrix;
+        initQMatrix();
+    }
 }

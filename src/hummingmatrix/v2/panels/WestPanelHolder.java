@@ -13,6 +13,7 @@ import hummingmatrix.v2.classes.ReadWriteText;
 public class WestPanelHolder extends javax.swing.JPanel {
     
     private ReadWriteText matrixObj;
+    private RealMatrixPanel rmp;
 
     /**
      * Creates new form WestPanelHolder
@@ -24,10 +25,14 @@ public class WestPanelHolder extends javax.swing.JPanel {
     }
     
     public void addRealMatrixPanel() {
-        RealMatrixPanel rmp = new RealMatrixPanel(this.matrixObj);
+        rmp = new RealMatrixPanel(this.matrixObj);
         this.add(rmp);
         repaint();
         revalidate();
+    }
+    
+    public RealMatrixPanel getRealMatrixPanel() {
+        return rmp;
     }
     
     public void addQMatrixPanel() {

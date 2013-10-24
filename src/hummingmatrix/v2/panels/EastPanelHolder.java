@@ -13,6 +13,7 @@ import hummingmatrix.v2.classes.ReadWriteText;
 public class EastPanelHolder extends javax.swing.JPanel {
     
     private ReadWriteText matrixObj;
+    private ActionsPanel ap;
 
     /**
      * Creates new form WestPanelHolder
@@ -28,6 +29,17 @@ public class EastPanelHolder extends javax.swing.JPanel {
         this.add(rp);
         repaint();
         revalidate();
+    }
+    
+    public void addActionsPanel() {
+        ap = new ActionsPanel(this.matrixObj);
+        this.add(ap);
+        repaint();
+        revalidate();
+    }
+    
+    public ActionsPanel getActionsPanel() {
+        return ap;
     }
     
     /**

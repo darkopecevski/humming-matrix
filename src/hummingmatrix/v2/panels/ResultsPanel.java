@@ -5,6 +5,8 @@
 package hummingmatrix.v2.panels;
 
 import hummingmatrix.v2.classes.ReadWriteText;
+import hummingmatrix.v2.interfaces.MatrixChangeObserver;
+import java.util.List;
 
 /**
  *

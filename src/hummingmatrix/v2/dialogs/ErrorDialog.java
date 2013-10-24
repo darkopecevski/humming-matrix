@@ -22,7 +22,7 @@ public class ErrorDialog extends javax.swing.JDialog {
         initComponents();
         jlblWarningMsg.setText(message);
         this.validate();
-        this.revalidate();
+//        this.revalidate();
         this.repaint();
         this.setLocationRelativeTo(parent);
         this.setVisible(true);

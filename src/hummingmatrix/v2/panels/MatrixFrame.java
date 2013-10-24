@@ -11,21 +11,24 @@
 package hummingmatrix.v2.panels;
 
 import hummingmatrix.v2.classes.ReadWriteText;
+import hummingmatrix.v2.interfaces.CalculateMatrixObserver;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JTable;
 
 /**
  *
  * @author Ane
  */
-public class MatrixFrame extends javax.swing.JFrame {
+public class MatrixFrame extends javax.swing.JFrame implements CalculateMatrixObserver{
 
     private Toolkit tk;
     int xSize;
     int ySize;
     private ReadWriteText matrixObj;
+    WestPanelHolder wph;
 
     /**
      * Creates new form MatrixFrame
@@ -40,7 +43,7 @@ public class MatrixFrame extends javax.swing.JFrame {
     }
 
     public void setWestPanelHolder() {
-        WestPanelHolder wph = new WestPanelHolder(this.matrixObj);
+        wph = new WestPanelHolder(this.matrixObj);
         
         int panelWidth = (int) (Math.round(this.xSize * 0.50));
         int panelHeight = (int) (Math.round(this.ySize * 1));
@@ -63,6 +66,10 @@ public class MatrixFrame extends javax.swing.JFrame {
         eph.setPreferredSize(new Dimension(panelWidth,panelHeight));
         //adding the Result panel
         eph.addResultsPanel();
+        //adding acions panel
+        eph.addActionsPanel();
+        //Subscribe Matrix Panel to listen to Calculate Event.
+        eph.getActionsPanel().register(this);
         
 
         Container pane = this.getContentPane();
@@ -211,4 +218,11 @@ private void jmiCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JMenuItem jmiToPdf;
     private javax.swing.JMenuItem jmiTransposeMatrix;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onCalculate() {
+        JTable realMatrix = wph.getRealMatrixPanel().getRealtMatrixTable();
+        matrixObj.promeniJaMatricata(realMatrix);
+        matrixObj.notifyObservers();
+    }
 }

@@ -21,7 +21,7 @@ public class InformationDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         jlblWarningMsg.setText(message);
-        this.revalidate();
+//        this.revalidate();
         this.repaint();
         this.setLocationRelativeTo(parent);
         this.setVisible(true);

@@ -64,6 +64,10 @@ public class RealMatrixPanel extends javax.swing.JPanel {
             Logger.getLogger(RealMatrixPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public JTable getRealtMatrixTable() {
+        return jtblRealMatrixTable;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -118,7 +118,7 @@ public class NoMatrixEnteredAlertDialog extends javax.swing.JDialog {
     private void jbtnCreateMatrixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCreateMatrixActionPerformed
         this.dispose();
         WarningDialog wd = new WarningDialog(null, true, "This is just a test message long message to check if it will expand properly");
-        wd.revalidate();
+        wd.validate();
         wd.repaint();
         wd.setLocationRelativeTo(this);
         wd.setVisible(true);
