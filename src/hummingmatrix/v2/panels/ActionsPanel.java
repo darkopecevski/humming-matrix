@@ -69,7 +69,7 @@ public class ActionsPanel extends javax.swing.JPanel implements CalculateMatrixS
     }//GEN-LAST:event_jbtnCalculateMatrixActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jbtnCalculateMatrix;
+    public javax.swing.JButton jbtnCalculateMatrix;
     // End of variables declaration//GEN-END:variables
 
     @Override

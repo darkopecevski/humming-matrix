@@ -44,15 +44,7 @@ public class QMatrixPanel extends javax.swing.JPanel implements MatrixChangeObse
 
             }
             
-            Object[][] matrix = this.matrixObj.getMatrixContent();
             Object[][] qMatrix = this.matrixObj.presmetajQMatrica();
-            
-            float[] t = this.matrixObj.calculateProbability(matrix);
-            HashMap hm = this.matrixObj.verojatnostNaOdredenaSlicnost(qMatrix, t);
-            String vos = this.matrixObj.convertVerojatnostNOS(hm);
-            this.matrixObj.presmetajPremini(matrix);
-            this.matrixObj.verojatnostNaSosednaDistanca();
-
             jtblRealMatrixTable.setModel(new javax.swing.table.DefaultTableModel(qMatrix, columnTitles));
             jtblRealMatrixTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 

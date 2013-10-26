@@ -43,14 +43,6 @@ public class RealMatrixPanel extends javax.swing.JPanel {
             }
             
             Object[][] matrix = this.matrixObj.getMatrixContent();
-            Object[][] qMatrix = this.matrixObj.presmetajQMatrica();
-            
-            float[] t = this.matrixObj.calculateProbability(matrix);
-            HashMap hm = this.matrixObj.verojatnostNaOdredenaSlicnost(qMatrix, t);
-            String vos = this.matrixObj.convertVerojatnostNOS(hm);
-            this.matrixObj.presmetajPremini(matrix);
-            this.matrixObj.verojatnostNaSosednaDistanca();
-
             jtblRealMatrixTable.setModel(new javax.swing.table.DefaultTableModel(matrix, columnTitles));
             jtblRealMatrixTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 

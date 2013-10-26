@@ -4,18 +4,28 @@
  */
 package hummingmatrix.v2.dialogs;
 
+import hummingmatrix.v2.panels.MatrixFrame;
+import java.awt.Frame;
+
 /**
  *
  * @author Darko
  */
 public class MatrixCreatedDialog extends javax.swing.JDialog {
 
+    String matrixName;
+    private java.awt.Frame parent;
     /**
      * Creates new form MatrixCreatedDialog
      */
     public MatrixCreatedDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.parent = parent;
         initComponents();
+    }
+
+    public void setMatrixName(String matrixName) {
+        this.matrixName = matrixName;
     }
 
     /**
@@ -116,7 +126,13 @@ public class MatrixCreatedDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnOpenThisMatrixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOpenThisMatrixActionPerformed
-        // TODO add your handling code here:
+        parent.setState(Frame.ICONIFIED);
+        MatrixFrame mf = new MatrixFrame(this.matrixName);
+        mf.setWestPanelHolder();
+        mf.setEastPanelHolder();
+        mf.setLocationRelativeTo(this);
+        mf.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jbtnOpenThisMatrixActionPerformed
 
     private void jbtnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCloseActionPerformed

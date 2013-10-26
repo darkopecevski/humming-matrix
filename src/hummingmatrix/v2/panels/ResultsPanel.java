@@ -5,8 +5,6 @@
 package hummingmatrix.v2.panels;
 
 import hummingmatrix.v2.classes.ReadWriteText;
-import hummingmatrix.v2.interfaces.MatrixChangeObserver;
-import java.util.List;
 
 /**
  *
@@ -22,9 +20,9 @@ public class ResultsPanel extends javax.swing.JPanel {
         initComponents();
         this.matrixObj = matrix;
         resultTab.addTab("Coefficients", new CoefficientPanel(this.matrixObj));
-        resultTab.addTab("Probability", new CoefficientPanel(this.matrixObj));
-        resultTab.addTab("Similarity", new CoefficientPanel(this.matrixObj));
-        resultTab.addTab("Diffusion", new CoefficientPanel(this.matrixObj));
+        resultTab.addTab("Probability", new ProbabilityPanel(this.matrixObj));
+        resultTab.addTab("Affinity", new AffinityPanel(this.matrixObj));
+        resultTab.addTab("Diffusion", new DiffusionPanel(this.matrixObj));
     }
 
     /**

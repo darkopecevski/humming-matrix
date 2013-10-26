@@ -6,6 +6,7 @@ package hummingmatrix.v2.dialogs;
 
 import hummingmatrix.v2.models.MatrixComboBoxModel;
 import hummingmatrix.v2.panels.MatrixFrame;
+import java.awt.Frame;
 import java.util.ResourceBundle;
 import javax.swing.ComboBoxModel;
 
@@ -17,6 +18,7 @@ public class OpenMatrixDialog extends javax.swing.JDialog {
 
     private MatrixComboBoxModel matrixModel = new MatrixComboBoxModel();
     private ResourceBundle bundle = ResourceBundle.getBundle("hummingmatrix/v2/translation/Bundle");
+    private java.awt.Frame parent;
 
     /**
      * Creates new form OpenMatrixDialog
@@ -24,6 +26,7 @@ public class OpenMatrixDialog extends javax.swing.JDialog {
     public OpenMatrixDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.parent = parent;
     }
 
     /**
@@ -128,6 +131,7 @@ private void jbtnOpenMatrixActionPerformed(java.awt.event.ActionEvent evt) {//GE
         return;
     }
     //Adding MatrixFrame
+    parent.setState(Frame.ICONIFIED);
     MatrixFrame mf = new MatrixFrame(jcbSelectMatrix.getSelectedItem().toString());
     mf.setWestPanelHolder();
     mf.setEastPanelHolder();

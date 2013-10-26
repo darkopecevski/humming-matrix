@@ -16,13 +16,13 @@ import javax.swing.JOptionPane;
 public class CreateMatrixDialog extends javax.swing.JDialog {
 
     private ResourceBundle bundle = ResourceBundle.getBundle("hummingmatrix/v2/translation/Bundle");
-
+    private java.awt.Frame parent;
     /**
      * Creates new form EnterMatrixDialog
      */
     public CreateMatrixDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-
+        this.parent = parent;
         initComponents();
     }
 
@@ -186,7 +186,10 @@ public class CreateMatrixDialog extends javax.swing.JDialog {
         if (!file.fileExists()) {
             if (file.createFile()) {
                 file.insertEmptyMatrix(nbrRows, nbrColumns);
-                InformationDialog id = new InformationDialog(null, true, bundle.getString("InfoMsg.matrixEntered.text"));
+                MatrixCreatedDialog mcd = new MatrixCreatedDialog(this.parent, true);
+                mcd.setMatrixName(matrixName + ".txt");
+                mcd.setLocationRelativeTo(this);
+                mcd.setVisible(true);
                 this.dispose();
             } else {
                 ErrorDialog ed = new ErrorDialog(null, true, bundle.getString("ErrorMsg.enteringFailed.text"));

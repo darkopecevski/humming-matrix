@@ -11,7 +11,11 @@
 package hummingmatrix.v2.panels;
 
 import hummingmatrix.v2.classes.ReadWriteText;
+import hummingmatrix.v2.dialogs.CreateMatrixDialog;
+import hummingmatrix.v2.dialogs.NoMatrixEnteredAlertDialog;
+import hummingmatrix.v2.dialogs.OpenMatrixDialog;
 import hummingmatrix.v2.interfaces.CalculateMatrixObserver;
+import hummingmatrix.v2.models.MatrixComboBoxModel;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -22,13 +26,14 @@ import javax.swing.JTable;
  *
  * @author Ane
  */
-public class MatrixFrame extends javax.swing.JFrame implements CalculateMatrixObserver{
+public class MatrixFrame extends javax.swing.JFrame implements CalculateMatrixObserver {
 
     private Toolkit tk;
     int xSize;
     int ySize;
     private ReadWriteText matrixObj;
     WestPanelHolder wph;
+    EastPanelHolder eph;
 
     /**
      * Creates new form MatrixFrame
@@ -40,14 +45,16 @@ public class MatrixFrame extends javax.swing.JFrame implements CalculateMatrixOb
         this.ySize = ((int) this.tk.getScreenSize().getHeight());
         this.setPreferredSize(new Dimension(xSize, ySize));
         this.matrixObj = new ReadWriteText(matrixName);
+        this.setTitle(matrixName);
+
     }
 
     public void setWestPanelHolder() {
         wph = new WestPanelHolder(this.matrixObj);
-        
+
         int panelWidth = (int) (Math.round(this.xSize * 0.50));
         int panelHeight = (int) (Math.round(this.ySize * 1));
-        wph.setPreferredSize(new Dimension(panelWidth,panelHeight));
+        wph.setPreferredSize(new Dimension(panelWidth, panelHeight));
         //adding the RealMatrix panel
         wph.addRealMatrixPanel();
         //adding QMatrix panel
@@ -57,20 +64,20 @@ public class MatrixFrame extends javax.swing.JFrame implements CalculateMatrixOb
         pane.add(wph, BorderLayout.WEST);
         pack();
     }
-    
+
     public void setEastPanelHolder() {
-        EastPanelHolder eph = new EastPanelHolder(this.matrixObj);
-        
+        eph = new EastPanelHolder(this.matrixObj);
+
         int panelWidth = (int) (Math.round(this.xSize * 0.50));
         int panelHeight = (int) (Math.round(this.ySize * 1));
-        eph.setPreferredSize(new Dimension(panelWidth,panelHeight));
+        eph.setPreferredSize(new Dimension(panelWidth, panelHeight));
         //adding the Result panel
         eph.addResultsPanel();
         //adding acions panel
         eph.addActionsPanel();
         //Subscribe Matrix Panel to listen to Calculate Event.
         eph.getActionsPanel().register(this);
-        
+
 
         Container pane = this.getContentPane();
         pane.add(eph, BorderLayout.EAST);
@@ -126,6 +133,11 @@ public class MatrixFrame extends javax.swing.JFrame implements CalculateMatrixOb
         jmiOpenMatrix.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hummingmatrix/v2/resources/open.png"))); // NOI18N
         jmiOpenMatrix.setMnemonic('o');
         jmiOpenMatrix.setText(bundle.getString("MatrixFrame.jmiOpenMatrix.text")); // NOI18N
+        jmiOpenMatrix.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiOpenMatrixActionPerformed(evt);
+            }
+        });
         jmMatrix.add(jmiOpenMatrix);
         jmMatrix.add(jSeparator3);
 
@@ -133,6 +145,11 @@ public class MatrixFrame extends javax.swing.JFrame implements CalculateMatrixOb
         jmiSaveMatrix.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hummingmatrix/v2/resources/save.png"))); // NOI18N
         jmiSaveMatrix.setMnemonic('s');
         jmiSaveMatrix.setText(bundle.getString("MatrixFrame.jmiSaveMatrix.text")); // NOI18N
+        jmiSaveMatrix.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiSaveMatrixActionPerformed(evt);
+            }
+        });
         jmMatrix.add(jmiSaveMatrix);
 
         jmiSaveAsMatrix.setText(bundle.getString("MatrixFrame.jmiSaveAsMatrix.text")); // NOI18N
@@ -193,12 +210,34 @@ public class MatrixFrame extends javax.swing.JFrame implements CalculateMatrixOb
     }// </editor-fold>//GEN-END:initComponents
 
 private void jmiCreateNewMatrixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCreateNewMatrixActionPerformed
-    // TODO add your handling code here:
+    //show dialog for create matrix.
+    CreateMatrixDialog cmd = new CreateMatrixDialog(this, true);
+    cmd.setLocationRelativeTo(this);
+    cmd.setVisible(true);
 }//GEN-LAST:event_jmiCreateNewMatrixActionPerformed
 
 private void jmiCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCloseActionPerformed
     this.dispose();
 }//GEN-LAST:event_jmiCloseActionPerformed
+
+    private void jmiSaveMatrixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSaveMatrixActionPerformed
+        this.onCalculate();
+    }//GEN-LAST:event_jmiSaveMatrixActionPerformed
+
+    private void jmiOpenMatrixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiOpenMatrixActionPerformed
+        //Check if matrices exiist. If not show alert box.
+        MatrixComboBoxModel mcbm = new MatrixComboBoxModel();
+        if (mcbm.getSize() > 0) {
+            OpenMatrixDialog omd = new OpenMatrixDialog(this, true);
+            omd.setLocationRelativeTo(this);
+            omd.setVisible(true);
+        } else {
+            NoMatrixEnteredAlertDialog nmed = new NoMatrixEnteredAlertDialog(this, true);
+            nmed.setLocationRelativeTo(this);
+            nmed.setVisible(true);
+        }
+    }//GEN-LAST:event_jmiOpenMatrixActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
